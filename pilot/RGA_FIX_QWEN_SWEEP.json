@@ -1,0 +1,71 @@
+{
+  "setup": {
+    "teacher": "Qwen/Qwen3-8B",
+    "student": "Qwen/Qwen3-0.6B",
+    "N_pool": 4000,
+    "budgets": [
+      500,
+      1000,
+      2000
+    ],
+    "anchors": 256,
+    "seeds": 3,
+    "epochs": 3,
+    "lr": 2e-05,
+    "max_eval": 250
+  },
+  "sweep": {
+    "500": {
+      "RGA_fixcov": {
+        "rougeL_mean": 0.23314622884369363,
+        "rougeL_std": 0.0056363083569322065,
+        "n": 3
+      },
+      "RGA_gatetopr": {
+        "rougeL_mean": 0.22981759601908944,
+        "rougeL_std": 0.0060728106047801276,
+        "n": 3
+      },
+      "RGA_fixcov_nogate": {
+        "rougeL_mean": 0.2380713932672093,
+        "rougeL_std": 0.0048647541765159934,
+        "n": 3
+      }
+    },
+    "1000": {
+      "RGA_fixcov": {
+        "rougeL_mean": 0.23304631126707762,
+        "rougeL_std": 0.008312553334698191,
+        "n": 3
+      },
+      "RGA_gatetopr": {
+        "rougeL_mean": 0.23861356779600618,
+        "rougeL_std": 0.00577140575083757,
+        "n": 3
+      },
+      "RGA_fixcov_nogate": {
+        "rougeL_mean": 0.24192336842515408,
+        "rougeL_std": 0.0030085632220710453,
+        "n": 3
+      }
+    },
+    "2000": {
+      "RGA_fixcov": {
+        "rougeL_mean": 0.24011840337012025,
+        "rougeL_std": 0.0034848187441639403,
+        "n": 3
+      },
+      "RGA_gatetopr": {
+        "rougeL_mean": 0.24746606956836334,
+        "rougeL_std": 0.0038205148866850454,
+        "n": 3
+      },
+      "RGA_fixcov_nogate": {
+        "rougeL_mean": 0.25111353336493963,
+        "rougeL_std": 0.009467278219411754,
+        "n": 3
+      }
+    }
+  },
+  "wall_clock_sec": 20521.937928438187
+}

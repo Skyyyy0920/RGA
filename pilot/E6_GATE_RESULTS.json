@@ -1,0 +1,44 @@
+{
+  "setup": {
+    "dataset": "CIFAR-100",
+    "pair": "ResNet-56->ResNet-20",
+    "N": 10000,
+    "noise_frac": 0.3,
+    "budget": 2000,
+    "seeds": 3,
+    "teacher_test_acc": 0.7094
+  },
+  "detection": {
+    "r_mean_noised": 1.0078099966049194,
+    "r_mean_clean": 0.7685994505882263,
+    "pTy_mean_noised": 1.8114504419329536e-22,
+    "pTy_mean_clean": 0.2402268946170807,
+    "auc_r_detects_noise": 0.9366628527641296,
+    "auc_lowpTy_detects_noise": 1.0,
+    "auc_gatescore_detects_noise": 0.9912833571434021
+  },
+  "selection": {
+    "gate_on": {
+      "acc_mean": 0.29919999999999997,
+      "acc_std": 0.02595162165774361,
+      "frac_noised_in_coreset_mean": 0.0,
+      "n": 3,
+      "budget": 2000
+    },
+    "gate_off": {
+      "acc_mean": 0.0105,
+      "acc_std": 0.0013589211407093007,
+      "frac_noised_in_coreset_mean": 0.9735000729560852,
+      "n": 3,
+      "budget": 2000
+    },
+    "random": {
+      "acc_mean": 0.07353333333333334,
+      "acc_std": 0.004343833432452134,
+      "frac_noised_in_coreset_mean": 0.2986666758855184,
+      "n": 3,
+      "budget": 2000
+    }
+  },
+  "wall_clock_sec": 79.06320214271545
+}

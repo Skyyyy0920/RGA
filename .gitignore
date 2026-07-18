@@ -1,0 +1,13 @@
+# Large / regeneratable data & artifacts
+data/
+*.pt
+*.tar.gz
+*.ckpt
+*.safetensors
+
+# Caches / logs / temp
+__pycache__/
+*.pyc
+pilot/*.log
+.DS_Store
+.ipynb_checkpoints/

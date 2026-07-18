@@ -1,0 +1,34 @@
+{
+  "setup": {
+    "method": "LESS (grad cosine to held-out val grad, no Adam precond)",
+    "teacher": "Qwen/Qwen3-8B",
+    "student": "Qwen/Qwen3-0.6B",
+    "N_pool": 4000,
+    "val_size": 200,
+    "budgets": [
+      500,
+      1000,
+      2000
+    ],
+    "seeds": 3,
+    "protocol": "micro-batch grad-accum eff bs=8, fp16 teacher"
+  },
+  "results": {
+    "500": {
+      "rougeL_mean": 0.2290256456845269,
+      "rougeL_std": 0.005191031192901539,
+      "n": 3
+    },
+    "1000": {
+      "rougeL_mean": 0.2417559867886434,
+      "rougeL_std": 0.0024943320044473892,
+      "n": 3
+    },
+    "2000": {
+      "rougeL_mean": 0.23543984893977543,
+      "rougeL_std": 0.0028331427374459076,
+      "n": 3
+    }
+  },
+  "wall_clock_sec": 4333.736199617386
+}

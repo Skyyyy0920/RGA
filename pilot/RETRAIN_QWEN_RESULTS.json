@@ -1,0 +1,44 @@
+{
+  "setup": {
+    "teacher": "Qwen/Qwen3-8B",
+    "student": "Qwen/Qwen3-0.6B",
+    "N_pool": 4000,
+    "budget": 1500,
+    "proj_dim": 2048,
+    "temp": 2.0,
+    "seeds": 3,
+    "epochs": 3,
+    "lr": 2e-05,
+    "max_eval": 200,
+    "r_deep_std": 0.25924059748649597,
+    "r_proxy_std": 0.2704054117202759
+  },
+  "results": {
+    "RGA_deep": {
+      "rougeL_mean": 0.25233976445792994,
+      "rougeL_std": 0.0024328547002840984,
+      "n": 3
+    },
+    "deep_topr": {
+      "rougeL_mean": 0.2457898605992832,
+      "rougeL_std": 0.004166538851376798,
+      "n": 3
+    },
+    "proxy_topr": {
+      "rougeL_mean": 0.23336361344185827,
+      "rougeL_std": 0.008770237476132384,
+      "n": 3
+    },
+    "token_topr": {
+      "rougeL_mean": 0.22087332312269525,
+      "rougeL_std": 0.0018008314400013935,
+      "n": 3
+    },
+    "random": {
+      "rougeL_mean": 0.24647059235481525,
+      "rougeL_std": 0.006477928692194089,
+      "n": 3
+    }
+  },
+  "wall_clock_sec": 9422.887806653976
+}

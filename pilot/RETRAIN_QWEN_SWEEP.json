@@ -1,0 +1,89 @@
+{
+  "setup": {
+    "teacher": "Qwen/Qwen3-8B",
+    "student": "Qwen/Qwen3-0.6B",
+    "N_pool": 4000,
+    "budgets": [
+      500,
+      1000,
+      2000
+    ],
+    "proj_dim": 2048,
+    "temp": 2.0,
+    "seeds": 3,
+    "epochs": 3,
+    "lr": 2e-05,
+    "max_eval": 250,
+    "r_deep_std": 0.25924059748649597,
+    "r_proxy_std": 0.2704054117202759
+  },
+  "sweep": {
+    "500": {
+      "RGA_deep": {
+        "rougeL_mean": 0.22908339328760838,
+        "rougeL_std": 0.015338719312838003,
+        "n": 3
+      },
+      "deep_topr": {
+        "rougeL_mean": 0.22686106276407514,
+        "rougeL_std": 0.005101827144353055,
+        "n": 3
+      },
+      "proxy_topr": {
+        "rougeL_mean": 0.21057377179174627,
+        "rougeL_std": 0.006219163082147506,
+        "n": 3
+      },
+      "random": {
+        "rougeL_mean": 0.2277834459507552,
+        "rougeL_std": 0.003370159008087939,
+        "n": 3
+      }
+    },
+    "1000": {
+      "RGA_deep": {
+        "rougeL_mean": 0.2341362948615001,
+        "rougeL_std": 0.0016870474541782411,
+        "n": 3
+      },
+      "deep_topr": {
+        "rougeL_mean": 0.23323295921177015,
+        "rougeL_std": 0.0013382065250224337,
+        "n": 3
+      },
+      "proxy_topr": {
+        "rougeL_mean": 0.2174167364633466,
+        "rougeL_std": 0.00528036999971557,
+        "n": 3
+      },
+      "random": {
+        "rougeL_mean": 0.23883139111339236,
+        "rougeL_std": 0.01168835381875949,
+        "n": 3
+      }
+    },
+    "2000": {
+      "RGA_deep": {
+        "rougeL_mean": 0.24105767271337308,
+        "rougeL_std": 0.0024932684638834454,
+        "n": 3
+      },
+      "deep_topr": {
+        "rougeL_mean": 0.2475939729065819,
+        "rougeL_std": 0.0013246136621087807,
+        "n": 3
+      },
+      "proxy_topr": {
+        "rougeL_mean": 0.24178555719498318,
+        "rougeL_std": 0.003242861829040599,
+        "n": 3
+      },
+      "random": {
+        "rougeL_mean": 0.24098265295728571,
+        "rougeL_std": 0.0031419899215430866,
+        "n": 3
+      }
+    }
+  },
+  "wall_clock_sec": 18081.877486228943
+}

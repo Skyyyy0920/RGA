@@ -1,0 +1,99 @@
+{
+  "setup": {
+    "teacher": "Qwen/Qwen3-8B",
+    "student": "Qwen/Qwen3-0.6B",
+    "N_pool": 4000,
+    "budgets": [
+      500,
+      1000,
+      2000
+    ],
+    "seeds": 3,
+    "epochs": 3,
+    "protocol": "micro-batch grad-accum, effective bs=8, fp16 teacher"
+  },
+  "sweep": {
+    "500": {
+      "RGA_fixcov_nogate": {
+        "rougeL_mean": 0.23889863026530564,
+        "rougeL_std": 0.0014751371580057767,
+        "n": 3
+      },
+      "TAGCOS": {
+        "rougeL_mean": 0.23309814285232985,
+        "rougeL_std": 0.008818142669751615,
+        "n": 3
+      },
+      "deep_topr": {
+        "rougeL_mean": 0.21843388181865916,
+        "rougeL_std": 0.010833900750583958,
+        "n": 3
+      },
+      "GraNd": {
+        "rougeL_mean": 0.2068559726575899,
+        "rougeL_std": 0.011675790636014916,
+        "n": 3
+      },
+      "random": {
+        "rougeL_mean": 0.23530319921810672,
+        "rougeL_std": 0.005138405359430135,
+        "n": 3
+      }
+    },
+    "1000": {
+      "RGA_fixcov_nogate": {
+        "rougeL_mean": 0.2446699474228264,
+        "rougeL_std": 0.006284482564828139,
+        "n": 3
+      },
+      "TAGCOS": {
+        "rougeL_mean": 0.23259860190467088,
+        "rougeL_std": 0.00206156793929672,
+        "n": 3
+      },
+      "deep_topr": {
+        "rougeL_mean": 0.23716539417818208,
+        "rougeL_std": 0.004212335489601316,
+        "n": 3
+      },
+      "GraNd": {
+        "rougeL_mean": 0.23741961052838997,
+        "rougeL_std": 0.0009618965313327967,
+        "n": 3
+      },
+      "random": {
+        "rougeL_mean": 0.24626342092321138,
+        "rougeL_std": 0.010351967412007048,
+        "n": 3
+      }
+    },
+    "2000": {
+      "RGA_fixcov_nogate": {
+        "rougeL_mean": 0.24569871009151611,
+        "rougeL_std": 0.004649736863604809,
+        "n": 3
+      },
+      "TAGCOS": {
+        "rougeL_mean": 0.24125885509522238,
+        "rougeL_std": 0.0025481529012531846,
+        "n": 3
+      },
+      "deep_topr": {
+        "rougeL_mean": 0.24337771255308085,
+        "rougeL_std": 0.001410565775538526,
+        "n": 3
+      },
+      "GraNd": {
+        "rougeL_mean": 0.23753380983468753,
+        "rougeL_std": 0.002199671563214218,
+        "n": 3
+      },
+      "random": {
+        "rougeL_mean": 0.23689307335719723,
+        "rougeL_std": 0.004371269527012185,
+        "n": 3
+      }
+    }
+  },
+  "wall_clock_sec": 35368.06420707703
+}

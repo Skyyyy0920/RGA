@@ -1,0 +1,46 @@
+{
+  "setup": {
+    "teacher": "Qwen/Qwen3-8B",
+    "student": "Qwen/Qwen3-0.6B",
+    "N": 1500,
+    "proj_dim": 2048,
+    "anchors": 256,
+    "temp": 2.0,
+    "used_sft_teacher": true,
+    "lm_head_params_M": 155.582464,
+    "attn_params_M": 176.160768
+  },
+  "r_stats": {
+    "r_token": {
+      "mean": 0.8734719753265381,
+      "std": 0.1707688421010971
+    },
+    "r_proxy": {
+      "mean": 0.7694029808044434,
+      "std": 0.1922742873430252
+    },
+    "r_deep": {
+      "mean": 0.7085081338882446,
+      "std": 0.26608115434646606
+    }
+  },
+  "DECISION_spearman": {
+    "r_proxy_vs_r_deep": 0.7531623116276941,
+    "r_token_vs_r_proxy": 0.24206462669538964,
+    "r_token_vs_r_deep": 0.19081667858519052
+  },
+  "DECISION_pearson": {
+    "r_proxy_vs_r_deep": 0.7510200493053124,
+    "r_token_vs_r_proxy": 0.17009143053437484
+  },
+  "gram_cka": {
+    "proxy_vs_deep": 0.34722962975502014,
+    "token_vs_proxy": 0.8710958361625671,
+    "token_vs_deep": 0.3080264925956726
+  },
+  "topk_overlap@10pct": {
+    "proxy_vs_deep": 0.6,
+    "token_vs_deep": 0.05333333333333334
+  },
+  "wall_clock_sec": 304.1863751411438
+}

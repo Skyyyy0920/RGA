@@ -1,0 +1,69 @@
+{
+  "setup": {
+    "dataset": "CIFAR-100",
+    "pair": "ResNet-56->ResNet-20",
+    "N": 10000,
+    "budget": 4000,
+    "seeds": 3,
+    "teacher_test_acc": 0.7094
+  },
+  "E5_ablations": {
+    "MAIN_studentKD_teacherENTK_cov_d2048_m256": {
+      "acc_mean": 0.433,
+      "acc_std": 0.011074595553186887,
+      "sel_sec": 1.911402940750122,
+      "budget": 4000
+    },
+    "criterion_topr": {
+      "acc_mean": 0.3181333333333333,
+      "acc_std": 0.007960876556985146,
+      "sel_sec": 0.005335569381713867,
+      "budget": 4000
+    },
+    "sig_both_entk": {
+      "acc_mean": 0.4032,
+      "acc_std": 0.01030372101071583,
+      "sel_sec": 1.7012085914611816,
+      "budget": 4000
+    },
+    "sig_both_KDfeature": {
+      "acc_mean": 0.4202000000000001,
+      "acc_std": 0.004789572005931226,
+      "sel_sec": 1.7079353332519531,
+      "budget": 4000
+    },
+    "proj_d512": {
+      "acc_mean": 0.4139333333333333,
+      "acc_std": 0.007149048110684991,
+      "sel_sec": 1.6758975982666016,
+      "budget": 4000
+    },
+    "proj_d8192": {
+      "acc_mean": 0.441,
+      "acc_std": 0.015140013210033871,
+      "sel_sec": 1.7684757709503174,
+      "budget": 4000
+    },
+    "anchors_m64": {
+      "acc_mean": 0.4251333333333333,
+      "acc_std": 0.012205554291205109,
+      "sel_sec": 1.7038533687591553,
+      "budget": 4000
+    },
+    "anchors_m1024": {
+      "acc_mean": 0.43726666666666664,
+      "acc_std": 0.01727162091087252,
+      "sel_sec": 1.7211918830871582,
+      "budget": 4000
+    }
+  },
+  "E4_efficiency": {
+    "full_grad_acc_mean": 0.4213,
+    "full_grad_acc_std": 0.013229512462672233,
+    "full_grad_extract_sec": 0.5797741413116455,
+    "lastlayer_proj_sec": 0.01639389991760254,
+    "lastlayer_acc_mean": 0.433,
+    "note": "full vs last-layer student KD gradient; teacher = last-layer feature in both"
+  },
+  "wall_clock_sec": 558.3947131633759
+}
