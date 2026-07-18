@@ -87,6 +87,18 @@ calibration; pretrained LLM needs little). Warm-up length sensitivity is checked
 
 ## 2. Experiment suite
 
+### Step 0 — WRITE THE CODE FIRST (native, self-contained)  · P0 · before any experiment
+The /goal run **writes all experiment code from scratch** as a native, self-contained package **before
+running anything**. Hard rules:
+- **No dependency on SaGD or any other external project** — do not import from, copy, or vendor SaGD
+  code. Write it fresh. The existing `pilot/` scripts are exploratory scaffolding that referenced SaGD;
+  **supersede them with native code** (a clean `rga/` package: `models`, `data`, `datasets`, `eval`,
+  `projection` + the E0–E11 harnesses).
+- Only **external data** may live outside the repo: the task-SFT'd teacher checkpoints (large `*.pt`),
+  referenced via `--teacher_ckpt` / `RGA_CKPT_DIR`. HF datasets/models download on first use.
+- Import-check the package (CPU) before spending GPU. Commit the code to the RGA repo.
+- Then and only then proceed to E0.
+
 ### E0 — Signatures & diagnostics (build the pipeline)  · P0 · ~0.5 GPU-day
 **New code**: symmetric NLL-gradient extraction over last-K blocks for BOTH teacher and student
 (adapt `pilot/exp_retrain_qwen.py::extract` + SaGD `gradient_pca_selection` teacher-grad; cache both).
@@ -206,7 +218,7 @@ The paper needs a *principled reason* selecting high-`r` samples maximizes KD va
 
 ## 3. Run order & dependencies
 ```
-E0 (build+diagnose) ─▶ E1 (Phase A: pick form → Phase B: HEADLINE gate) ─┬─▶ E2 (generalize)  [P0]
+Step 0 (WRITE native code, no SaGD) ─▶ E0 (build+diagnose) ─▶ E1 (Phase A: pick form → Phase B: HEADLINE gate) ─┬─▶ E2 (generalize)  [P0]
                                            ├─▶ E3 (mechanism)                   [P0]
                                            ├─▶ E4 (ablations)                   [P0]
                                            ├─▶ E5 (efficiency/wall-clock)       [P0]
@@ -289,19 +301,22 @@ E0 (build+diagnose) ─▶ E1 (Phase A: pick form → Phase B: HEADLINE gate) �
 | | E11 deep analysis | todo | | |
 | | paper | todo | | |
 
-## 8. Existing assets to reuse
-- `pilot/exp_retrain_qwen.py` — extraction + micro-batch `kd_train` + ROUGE eval (adapt signature to symmetric last-K).
-- `pilot/exp_final_compare_qwen.py` — fair head-to-head harness (relational + coverage + selection).
-- `pilot/exp_baselines_qwen.py` — EL2N/GraNd/TAGCOS/GRAFT. `pilot/exp_less_qwen.py` — LESS.
-- `pilot/exp_decision_qwen.py` — CKA / token-vs-deep analysis (for E0/E7).
-- `pilot/exp_e6_gate.py` — teacher-noise gate (vision; adapt to LLM for E6).
-- SaGD: `load_teacher/load_student`, `InstructionDataset/SquadDataset`, `evaluate_rouge`/`evaluate_all`,
-  `CountSketchProjector`, `gradient_pca_selection` (teacher NLL gradient over attention params).
+## 8. Existing assets — REFERENCE ONLY (reimplement natively, do NOT import)
+The exploratory `pilot/` scripts show the *algorithms* (relational residual, anchor-space-residual
+coverage / greedy log-det, micro-batch grad-accum KD training, Count-Sketch projection, EL2N/GraNd/
+TAGCOS/GRAFT/LESS selection, CKA token-vs-deep analysis, teacher-noise gate). **Use them as a logic
+reference only** — Step 0 reimplements everything natively in `rga/`; **do not import SaGD** for
+`load_teacher/load_student`, datasets, `evaluate_rouge`, or `CountSketchProjector` (write your own).
+- Logic references: `pilot/exp_retrain_qwen.py` (extract + `kd_train` + eval), `exp_final_compare_qwen.py`
+  (relational + coverage + selection), `exp_baselines_qwen.py` (EL2N/GraNd/TAGCOS/GRAFT),
+  `exp_less_qwen.py` (LESS), `exp_decision_qwen.py` (CKA), `exp_e6_gate.py` (gate; vision).
 
 ## 9. One-line to execute (paste into /goal)
 ```
 按 RGA_PAPER_EXPERIMENT_PLAN.md 跑完 E0–E11 全部实验并写 ICLR-Oral 目标论文。方法已冻结(§0 对称 NLL
-梯度 + 最后K层,产出逐样本价值信号 r),不要改方法。先做 lit-check(novelty + baselines,尽早)。
+梯度 + 最后K层,产出逐样本价值信号 r),不要改方法。**Step 0:先从零写全部原生代码(rga/ 包:models/data/
+eval/projection + E0–E11 harness),不依赖也不拷贝 SaGD,pilot/ 旧脚本仅作逻辑参考;import-check 通过、
+提交到 RGA 仓库后,再跑实验。** 先做 lit-check(novelty + baselines,尽早)。
 按 §3 run order:E0 建管线并确认 r 有结构且非 token 级;E1 先 Phase A 在算力对齐下决定 r 的用法
 (SUBSET / REWEIGHT / CURRICULUM,含 full-data 参照),再 Phase B 用胜出形态跑主表——baseline 必须与
 该形态对齐(§4),含 token 级 RGA 对照,报 win-rate(GPT-judge,主) + ROUGE-L + 种子方差 + 配对显著性
